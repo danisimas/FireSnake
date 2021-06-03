@@ -18,14 +18,10 @@ screen.fill(background_color)
 
 
 def main():
-    CLICK = False
     while not GAME:
-        text_rect.center = (300, 400)
-        pos_x, pos_y = pygame.mouse.get_pos()
 
-        if text_rect.collidepoint((pos_x, pos_y)):
-            if CLICK:
-                menu.main()
+
+
 
         for event in pygame.event.get():
             if event.type == QUIT:

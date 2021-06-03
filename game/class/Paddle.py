@@ -1,11 +1,10 @@
-class Paddles:
-    def __init__(self, image, x_start, y_start):
-        super().__init__(image, x_start, y_start)
-        self.speed = 4
+import Interface
 
-    def update(self):
-        self.movement()
-        self.collides_with_walls()
+
+class Paddles(Interface):
+    def __init__(self, image, x_position, y_position):
+        super(Paddles, self).__init__(image, x_position, y_position)
+        self.speed = 5
 
     def movement(self):
         if self.rect.centery + 30 < ball.rect.y:
@@ -18,3 +17,7 @@ class Paddles:
             self.rect.y = 0
         elif self.rect.y >= 420:
             self.rect.y = 420
+
+    def update(self):
+        self.movement()
+        self.collides_with_walls()
