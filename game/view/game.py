@@ -20,17 +20,10 @@ screen.fill(background_color)
 def main():
     while not GAME:
 
-
-
-
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-
-            if event.type == MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    CLICK = True
 
         screen.blit(text, text_rect)
         pygame.display.update()
