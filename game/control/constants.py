@@ -1,4 +1,4 @@
 """Constants"""
-SIZE = (600, 600)
+SIZE = (800, 600)
 GAME = False
 CLICK = False

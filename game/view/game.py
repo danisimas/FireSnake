@@ -25,7 +25,6 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        screen.blit(text, text_rect)
         pygame.display.update()
 
 
