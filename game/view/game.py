@@ -16,10 +16,6 @@ pygame.display.set_caption('Snake Fire')
 background_color = (134, 250, 97)
 screen.fill(background_color)
 
-font = pygame.font.SysFont('CLIQUE', 30)
-text = font.render('CLIQUE', True, pygame.Color("Blue"))
-text_rect = text.get_rect()
-
 
 def main():
     CLICK = False

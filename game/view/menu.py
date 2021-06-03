@@ -4,6 +4,8 @@ import pygame
 from control.constants import *
 from pygame.locals import *
 import game
+import credits
+
 
 pygame.init()
 
@@ -30,6 +32,10 @@ def main():
         if text_rect.collidepoint((pos_x, pos_y)):
             if CLICK:
                 game.main()
+
+        if text_rect.collidepoint((pos_x, pos_y)):
+            if CLICK:
+                credits.main()
 
         for event in pygame.event.get():
             if event.type == QUIT:
