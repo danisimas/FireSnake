@@ -1,8 +1,7 @@
 """Constants"""
-SIZE = (800, 600)
+SIZE = (600, 600)
 GAME = False
 CLICK = False
-MOVE_UP = MOVE_DOWN = MOVE_RIGHT = MOVE_LEFT = MOVE_INIT = False
-SNAKE = 2
-STEP = 23
 SPEED = 90
+SIZE_SNAKE = 23
+FPS = 10
