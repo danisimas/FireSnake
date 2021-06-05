@@ -3,11 +3,13 @@ from control.constants import *
 
 size = SIZE_SNAKE
 
+'''Snake Class'''
+
 
 class Snake:
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
-        self.image = pygame.image.load("../assets/arthur_santos_body.png").convert()
+        self.image = pygame.image.load("../assets/body.png").convert()
         self.direction = ''
         self.score = 0
         self.length = 1
@@ -27,12 +29,10 @@ class Snake:
         self.direction = 'down'
 
     def walk(self):
-        # update body
         for i in range(self.length-1, 0,  -1):
             self.x[i] = self.x[i-1]
             self.y[i] = self.y[i-1]
 
-        # update head
         if self.direction == 'left':
             self.x[0] -= size
         if self.direction == 'right':

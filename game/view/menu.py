@@ -1,10 +1,8 @@
 import sys
 
 import credits
-import pygame
-from control.constants import *
-from pygame.locals import *
-from model.Game import Game
+import game
+from game import *
 
 main_clock = pygame.time.Clock()
 
@@ -32,7 +30,6 @@ def main():
 
         if text_rect.collidepoint((pos_x, pos_y)):
             if CLICK:
-                game = Game()
                 game.run()
 
         if text_rect.collidepoint((pos_x, pos_y)):
