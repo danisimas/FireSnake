@@ -30,6 +30,7 @@ def main():
 
         if text_rect.collidepoint((pos_x, pos_y)):
             if CLICK:
+                window.fill((0, 0, 0))
                 game.run()
 
         if text_rect.collidepoint((pos_x, pos_y)):

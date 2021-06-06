@@ -19,10 +19,10 @@ class Ball:
         self.MAX_SPEED = 9
         self.x = 300
         self.y = 300
+        self.randomize_angle()
 
     def draw(self):
         self.parent_screen.blit(self.image, (self.x, self.y))
-        pygame.display.flip()
 
     def update(self):
         self.movement()
@@ -54,7 +54,7 @@ class Ball:
             self.dy *= -1
 
     def randomize_angle(self):
-        random_angle = randint(40, 50)
+        random_angle = randint(30, 60)
         angle = radians(random_angle)
         self.dx = cos(angle)
         self.dy = sin(angle)
@@ -63,3 +63,4 @@ class Ball:
         self.randomize_angle()
         self.dy = randint(-1, 1)
         self.speed = self.MIN_SPEED
+

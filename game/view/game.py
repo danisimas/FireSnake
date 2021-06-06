@@ -18,21 +18,21 @@ main_clock = pygame.time.Clock()
 pygame.init()
 
 pygame.display.set_caption("Snake Fire")
-
 surface = pygame.display.set_mode(SIZE, RESIZABLE)
 snake = Snake(surface)
 apple = Apple(surface)
-ball = Ball(surface)
-
+balls = [Ball(surface)]
+count = 0
+quant = 5
 
 '''Reset'''
 
 
 def reset():
-    global snake, apple, ball
+    global snake, apple, balls
     snake = Snake(surface)
     apple = Apple(surface)
-    ball = Ball(surface)
+    balls = [Ball(surface)]
     snake.score = 0
 
 
@@ -57,12 +57,12 @@ def background():
 
 
 def play():
+    global count, quant, snake
     background()
     snake.walk()
     apple.draw()
-    ball.draw()
-    ball.update()
-    font = pygame.font.SysFont('arial', 30)
+
+    font = pygame.font.SysFont('times new roman', 30)
     score_text = font.render("Score:" + str(snake.score), True, (200, 200, 200))
 
     # snake eating apple scenario
@@ -71,6 +71,11 @@ def play():
             snake.score += 1
             snake.increase_length()
             apple.move()
+            count += 1
+            if count == quant:
+                count = 0
+                quant = random.randint(5, 10)
+                balls.append(Ball(surface))
 
     # snake colliding with itself
     for i in range(3, snake.length):
@@ -84,9 +89,14 @@ def play():
 
     # snake eating apple scenario
     for i in range(snake.length):
-        if is_collision(snake.x[i], snake.y[i], ball.x, ball.y):
-            score = snake.score
-            show_game_over(score)
+        for j in range(len(balls)):
+            if is_collision(snake.x[i], snake.y[i], balls[j].x, balls[j].y):
+                score = snake.score
+                show_game_over(score)
+
+    for i in range(len(balls)):
+        balls[i].draw()
+        balls[i].update()
 
     surface.blit(score_text, (300, 10))
     pygame.display.update()

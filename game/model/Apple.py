@@ -18,7 +18,6 @@ class Apple:
 
     def draw(self):
         self.parent_screen.blit(self.image, (self.x, self.y))
-        pygame.display.flip()
 
     def move(self):
         self.x = randint(5, 20) * size
