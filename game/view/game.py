@@ -18,12 +18,14 @@ main_clock = pygame.time.Clock()
 pygame.init()
 
 pygame.display.set_caption("Snake Fire")
-surface = pygame.display.set_mode(SIZE, RESIZABLE)
+surface = pygame.display.set_mode(SIZE)
+cover = pygame.image.load("../assets/5.png")
+cover_rect = cover.get_rect()
 snake = Snake(surface)
 apple = Apple(surface)
 balls = [Ball(surface)]
 count = 0
-quant = 5
+aux = 5
 
 '''Reset'''
 
@@ -50,20 +52,19 @@ def is_collision(x1, y1, x2, y2):
 
 
 def background():
-    surface.fill((0, 0, 0))
+    surface.blit(cover, cover_rect)
 
 
 '''Play'''
 
 
 def play():
-    global count, quant, snake
+    global count, aux, snake
     background()
     snake.walk()
     apple.draw()
-
-    font = pygame.font.SysFont('times new roman', 30)
-    score_text = font.render("Score:" + str(snake.score), True, (200, 200, 200))
+    font = pygame.font.Font("../fonts/VT323-Regular.ttf", 30)
+    score_text = font.render("Score:" + str(snake.score), True, pygame.color.Color("White"))
 
     # snake eating apple scenario
     for i in range(snake.length):
@@ -72,9 +73,9 @@ def play():
             snake.increase_length()
             apple.move()
             count += 1
-            if count == quant:
+            if count == aux:
                 count = 0
-                quant = random.randint(5, 10)
+                aux = random.randint(5, 10)
                 balls.append(Ball(surface))
 
     # snake colliding with itself
@@ -83,6 +84,7 @@ def play():
             score = snake.score
             show_game_over(score)
 
+    # snake collide with walls
     if not (0 <= snake.x[0] <= 600 and 0 <= snake.y[0] <= 600):
         score = snake.score
         show_game_over(score)
@@ -94,11 +96,12 @@ def play():
                 score = snake.score
                 show_game_over(score)
 
+    # drawing balls
     for i in range(len(balls)):
         balls[i].draw()
         balls[i].update()
 
-    surface.blit(score_text, (300, 10))
+    surface.blit(score_text, (500, 50))
     pygame.display.update()
     main_clock.tick(FPS)
 
@@ -122,7 +125,6 @@ def run():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     running = False
-
                 if event.key == K_LEFT:
                     snake.move_left()
 
@@ -138,6 +140,7 @@ def run():
             elif event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+
         play()
 
 

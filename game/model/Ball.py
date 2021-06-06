@@ -63,4 +63,3 @@ class Ball:
         self.randomize_angle()
         self.dy = randint(-1, 1)
         self.speed = self.MIN_SPEED
-
