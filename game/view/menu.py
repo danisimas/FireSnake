@@ -1,7 +1,7 @@
 import sys
 
 import credits
-import game
+import pygame
 from game import *
 
 main_clock = pygame.time.Clock()
